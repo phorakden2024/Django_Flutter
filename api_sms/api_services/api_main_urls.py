@@ -20,7 +20,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-        # path('', views.index, name='home'),
+        
         path('', include("api_services.api_urls.product_urls")),
         path('', include("api_services.api_urls.category_urls")),
         path('', include("api_services.api_urls.UserAuth_urls")),

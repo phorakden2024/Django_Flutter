@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'api_services',
     'rest_framework.authtoken',
+    'admin_dashboard',
+    'sweetify',
 ]
 
 MIDDLEWARE = [
