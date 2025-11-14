@@ -57,18 +57,13 @@
       href="{% static 'plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'%}"
     />
   </head>
+
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <!-- <div
-      class="preloader flex-column justify-content-center align-items-center"
-    >
+class="preloader flex-column justify-content-center align-items-center">
       <img
-        class="animation__shake"
-        src="{% static 'img/AdminLTELogo.png' %}"
-        alt="AdminLTELogo"
-        height="60"
-        width="60"
-      />
+class="animation__shake" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTELogo" height="60" width="60"/>
     </div> -->
 
       <!-- Navbar -->
@@ -84,35 +79,26 @@
             <li class="nav-item d-none d-sm-inline-block">
               <a href="#" class="nav-link">Home</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-              <a href="#" class="nav-link">Contact</a>
-            </li>
           </div>
         </ul>
-
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
           {% block navbar_right %}
+
+          <a href="#" class="nav-link">{{user.username|upper}}</a>
           <!-- override in child if needed -->
-          <a href="#" class="nav-link text-danger">Log Out</a>
+          <a href="/logout" class="nav-link text-danger">Log Out</a>
           {% endblock %}
         </ul>
       </nav>
       <!-- /.navbar -->
 
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="#" class="brand-link">
-          <img
-            src="{% static 'img/AdminLTELogo.png' %}"
-            alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3"
-            style="opacity: 0.8"
-          />
-          <span class="brand-text font-weight-light">
-            {% block brand_text %}AdminLTE 3{% endblock %}
+        <a href="#" class="brand-link d-flex justify-content-center">
+          <span class="brand-text font-weight-bold">
+            {% block brand_text %}JOL MERL{% endblock %}
           </span>
         </a>
-
         <div class="sidebar">
           <nav class="mt-2">
             <ul
@@ -121,49 +107,199 @@
               role="menu"
               data-accordion="false"
             >
-              {% for item in sidebar_items %} {% if item.children %}
-              <li class="nav-item" display="block">
+              <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+              <li class="nav-item menu-open">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon {{ item.icon }}"></i>
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
-                    {{ item.label }}
-                    <i class="fas fa-angle-left right"></i>
+                    Orders
+                    <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  {% for child in item.children %}
                   <li class="nav-item">
-                    <a
-                      href="{% url child.url_name %}"
-                      class="nav-link {% if item.url_name == request.resolver_match.url_name %}active{% endif %}"
-                    >
-                      <i class="fas {{ child.icon}} nav-icon"></i>
-                      <p>{{ child.label }}</p>
+                    <a href="pages/charts/chartjs.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>ChartJS</p>
                     </a>
                   </li>
-                  {% endfor %}
+                  <li class="nav-item">
+                    <a href="pages/charts/flot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Flot</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/inline.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Inline</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/uplot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>uPlot</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
-              {% else %}
               <li class="nav-item">
-                <a
-                  href="{% url item.url_name %}"
-                  class="nav-link {% if item.url_name == request.resolver_match.url_name %}active{% endif %}"
-                >
-                  <i class="fas {{ item.icon}} nav-icon"></i>
-                  <p>{{ item.label }}</p>
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Payments
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="pages/charts/chartjs.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>ChartJS</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/flot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Flot</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/inline.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Inline</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/uplot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>uPlot</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-              {% endif %} {% empty %}
+              <li class="nav-header">SETTINGS</li>
               <li class="nav-item">
-                <p class="text-muted pl-3">No menu items found.</p>
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Users
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="pages/charts/chartjs.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/flot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/inline.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/uplot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-              {% endfor %} {% block sidebar %} {% endblock %}
+              <li
+                class="nav-item {% if request.resolver_match.view_name == 'product' or request.resolver_match.view_name == 'category' or request.resolver_match.view_name == 'unit' %}menu-open{% endif %}"
+              >
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Inventory
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'product' %}"
+                      class="nav-link {% if request.resolver_match.view_name == 'product' %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Product</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'category' %}"
+                      class="nav-link {% if request.resolver_match.view_name == 'category' %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Category</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="{% url 'unit' %}"
+                      class="nav-link {% if request.resolver_match.view_name == 'unit' %}active{% endif %}"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>UOM</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Categories
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="pages/charts/chartjs.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/flot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/inline.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/charts/uplot.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sample</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>
       </aside>
-
       <div class="content-wrapper">
         <div class="content-header">
           <div class="container-fluid">
@@ -178,8 +314,7 @@
 
       <footer class="main-footer">
         <strong
-          >Copyright &copy; {% now "Y" %}
-          <a href="#">Lyhua Love Cock</a>.</strong
+          >Copyright &copy; {% now "Y" %} <a href="#">JOL MERL</a>.</strong
         >
         All rights reserved.
       </footer>
