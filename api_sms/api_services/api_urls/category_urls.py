@@ -9,4 +9,6 @@ urlpatterns = [
           path('api/v1/categories/', categoryViews.create_category),
           path('api/v1/categories/<int:id>/', categoryViews.update_category),
           path('api/v1/categories/<int:id>/delete/', categoryViews.delete_category),
+          path('api/v1/categories/<int:id>/show_by_id/', categoryViews.show_category_by_id),
+          path('api/v1/categories/search_by_name/', categoryViews.category_search_by_name),
 ]
