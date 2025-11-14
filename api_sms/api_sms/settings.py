@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'my_app',
     'rest_framework',
     'drf_yasg',
-    'api_services', 
+    'api_services',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +142,13 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',  # allow image upload
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication', # Useful for the browsable API and Swagger UI
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny', # Set to 'AllowAny' globally and restrict in views as needed
     ]
 }
 # Source - https://stackoverflow.com/a
@@ -149,4 +157,15 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
+}
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': "Token Authentication. Enter your token in the format: **Token YOUR_TOKEN_HERE**"
+        }
+    },
+    'USE_SESSION_AUTH': True, # To enable login/logout button in Swagger UI
 }
