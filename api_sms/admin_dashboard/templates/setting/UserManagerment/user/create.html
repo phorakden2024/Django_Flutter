@@ -1,0 +1,103 @@
+{% extends "base.html" %} {% block title %}User{% endblock %} {% block header %}Create User{% endblock %} {% block content %}
+
+<div class="container">
+  <div class="card shadow-sm">
+    <div class="d-flex justify-content-between align-items-center bg-primary text-white p-3 rounded">
+    <h4 class="mb-0">Create User</h4>
+
+    <a href="{% url 'user' %}" class="btn btn-outline-light btn-mb">X</a>
+</div>
+    <div class="card-body">
+      <form action="{% url 'store_user' %}" method="POST">
+          {% csrf_token %}
+        <!-- Username -->
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" name="username" class="form-control" required />
+        </div>
+        <div class="row">
+          <!-- First Name -->
+          <div class="form-group col-md-6">
+            <label>First Name</label>
+            <input type="text" name="first_name" class="form-control" />
+          </div>
+
+          <!-- Last Name -->
+          <div class="form-group col-md-6">
+            <label>Last Name</label>
+            <input type="text" name="last_name" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" />
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            required
+          />
+        </div>
+        <!-- Checkboxes Row -->
+        <div class="form-row">
+          <!-- Is Staff -->
+          <div class="form-group col-md-4">
+            <div class="form-check mt-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="is_staff"
+                id="is_staff"
+              />
+              <label class="form-check-label" for="is_staff"> Is Staff </label>
+            </div>
+          </div>
+
+          <!-- Is Superuser -->
+          <div class="form-group col-md-4">
+            <div class="form-check mt-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="is_superuser"
+                id="is_superuser"
+              />
+              <label class="form-check-label" for="is_superuser">
+                Is Superuser
+              </label>
+            </div>
+          </div>
+
+          <!-- Is Active -->
+          <div class="form-group col-md-4">
+            <div class="form-check mt-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="is_active"
+                id="is_active"
+                checked
+              />
+              <label class="form-check-label" for="is_active">
+                Is Active
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success btn-block">
+          Create User
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

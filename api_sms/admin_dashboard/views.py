@@ -20,7 +20,7 @@ def log_in(request):
         if user :
             if user.is_superuser:
                 login(request, user)
-                sweetify.success(request, 'Welcome Admin Dashboard' + user_name,  persistent='OK')
+                sweetify.success(request, 'Welcome Admin Dashboard',  persistent='OK')
                 return redirect("/",context={'user':user})
             else:
                 sweetify.error(request, 'Access Denied',  persistent='OK')

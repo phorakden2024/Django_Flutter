@@ -188,35 +188,35 @@ class="animation__shake" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE
               <li class="nav-header">SETTINGS</li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <i class="nav-icon fa fa-users"></i>
                   <p>
-                    Users
+                    Users Management
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/charts/chartjs.html" class="nav-link">
+                    <a href="{% url 'user' %}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Sample</p>
+                      <p>Users</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="pages/charts/flot.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Sample</p>
+                      <p>Role</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="pages/charts/inline.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Sample</p>
+                      <p>Permissions</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="pages/charts/uplot.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Sample</p>
+                      <p>Auth Token</p>
                     </a>
                   </li>
                 </ul>
@@ -225,7 +225,8 @@ class="animation__shake" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE
                 class="nav-item {% if request.resolver_match.view_name == 'product' or request.resolver_match.view_name == 'category' or request.resolver_match.view_name == 'unit' %}menu-open{% endif %}"
               >
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <i class="nav-icon fas fa-store"></i>
+
                   <p>
                     Inventory
                     <i class="right fas fa-angle-left"></i>
@@ -237,7 +238,7 @@ class="animation__shake" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE
                       href="{% url 'product' %}"
                       class="nav-link {% if request.resolver_match.view_name == 'product' %}active{% endif %}"
                     >
-                      <i class="far fa-circle nav-icon"></i>
+                      <i class="fa fa-cubes nav-icon"></i>
                       <p>Product</p>
                     </a>
                   </li>
@@ -246,7 +247,7 @@ class="animation__shake" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE
                       href="{% url 'category' %}"
                       class="nav-link {% if request.resolver_match.view_name == 'category' %}active{% endif %}"
                     >
-                      <i class="far fa-circle nav-icon"></i>
+                      <i class="fa fa-clone nav-icon"></i>
                       <p>Category</p>
                     </a>
                   </li>
@@ -255,7 +256,7 @@ class="animation__shake" src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE
                       href="{% url 'unit' %}"
                       class="nav-link {% if request.resolver_match.view_name == 'unit' %}active{% endif %}"
                     >
-                      <i class="far fa-circle nav-icon"></i>
+                      <i class="fa fa-map nav-icon"></i>
                       <p>UOM</p>
                     </a>
                   </li>

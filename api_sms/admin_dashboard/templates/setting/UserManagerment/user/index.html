@@ -1,9 +1,13 @@
-{% extends "base.html" %} {% block title %}Category{% endblock %} {% block header %}Category Page{% endblock %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% block title %}User{% endblock %}
+{% block header %}User Page{% endblock %}
+{% load static %}
+{% block content %}
 <div class="col-md-12 offset-md-0">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title mt-2">Category Table</h3>
-      <a href="{% url 'addform_category' %}" class="btn btn-primary float-right"
+      <h3 class="card-title mt-2">User Table</h3>
+      <a href="{% url 'addform_user' %}" class="btn btn-primary float-right"
         >Create</a
       >
     </div>
@@ -12,20 +16,23 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th style="width: 120px">Item ID</th>
-            <th>Category Name</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Created At</th>
+            <th style="width: 120px">USER ID</th>
+            <th>USER NAME</th>
+            <th>IS SUPERUSER</th>
+            <th>IS STAFF</th>
+            <th>STATUS</th>
+            <th>JOIN DATE</th>
+            <th>LAST LOGIN</th>
             <th class="w-auto text-center">Action</th>
           </tr>
         </thead>
         <tbody>
-          {% for item in categories %}
+          {% for item in users %}
           <tr>
             <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.description }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.is_superuser }}</td>
+            <td>{{ item.is_staff }}</td>
             <td>
               {% if item.is_active %}
               Active
@@ -33,10 +40,16 @@
               Inactive
               {% endif %}
             </td>
-            <td>{{ item.created_at|date:'d-M-Y' }}</td>
+            <td>{{ item.date_joined|date:'d-M-Y' }}</td>
+            <td>{{ item.last_login|date:'d-M-Y' }}</td>
             <td class="p-2 text-center">
               <a
-                href="{% url 'edit_category' item.id %}"
+                href="{% url 'view_user' item.id %}"
+                class="btn btn-primary"
+                >View</a
+              >
+              <a
+                href="{% url 'edit_user' item.id %}"
                 class="btn btn-warning"
                 >Edit</a
               >
