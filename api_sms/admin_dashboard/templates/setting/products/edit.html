@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Product{% endblock %}
+
+{% block header %}Edit Product{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="col-md-9 offset-md-1">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Edit Product Form</h3>
+
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form action="{% url 'update_product' products.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="ItemName">Product Name</label>
+                        <input type="text" name="product_name" value="{{ products.name }}" class="form-control" id="ItemName"
+                            placeholder="Item Name" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="SupplierContact">Product Description</label>
+                        <input type="text" name="product_desc" value="{{products.description}}" class="form-control" id="SupplierContact"
+                            placeholder="Item Description" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="ItemCategory">Category</label>
+                        <select name="cate_id" class="form-control" >
+                            <option value="">Select Category</option>
+                            {% for category in categories %}
+                            <option value="{{ category.id }}" {% if category.id == products.category_id_id %} selected {% endif %}>{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ItemStatus">Status</label>
+                        <select name="is_active" class="form-control" >
+                            <option value="">Select Status</option>
+                            <option value="true"{% if products.is_active %} selected {% endif %}>Active</option>
+                            <option value="false"{% if not products.is_active %} selected {% endif %}>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ItemImage">Image</label>
+                        <div class="custom-file">
+                            <input type="file" name="product_image" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-group col-md-4 offset-md-8">
+                        <label class="d-block text-center" style="display: block; margin: auto;" for="ItemImage">Image</label>
+                        {% if products.image %}
+                        <img src="{{ products.image.url }}" style="width: 100px; height: 100px; display: block; margin: auto;" alt="Product Image">
+                        {% else %}
+                        <img src="{% static 'img/no-img.jpeg' %}" style="width: 100px; height: 100px; display: block; margin: auto;" alt="Product Image">
+                        {% endif %}
+                    </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'product' %}" class="btn btn-success float-right">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

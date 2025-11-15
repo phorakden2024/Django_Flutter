@@ -1,12 +1,9 @@
-{% extends "base.html" %} 
-{% block title %}Products{% endblock %} 
-{% block header %}Products Page{% endblock %} 
-{% load static %} {% block content %}
+{% extends "base.html" %} {% block title %}Products{% endblock %} {% block header %}Products Page{% endblock %} {% load static %} {% block content %}
 <div class="col-md-12 offset-md-0">
   <div class="card">
     <div class="card-header">
       <h3 class="card-title mt-2">Item Table</h3>
-      <a href="#" class="btn btn-primary float-right">Create</a>
+      <a href="{% url 'addform_product' %} " class="btn btn-primary float-right">Create</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -14,41 +11,43 @@
         <thead>
           <tr>
             <th style="width: 120px">Item ID</th>
-            <th>Item Name</th>
-            <th>Item Description</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
             <th>Category</th>
             <th>Image</th>
+            <th>Status</th>
             <th>Created At</th>
             <th>Updated At</th>
             <th class="w-auto text-center">Action</th>
           </tr>
         </thead>
-        <!-- <tbody>
-          {% for item in items %}
-          <tr>
-            <td>{{ item.item_id }}</td>
-            <td>{{ item.item_name }}</td>
-            <td>{{ item.item_desc }}</td>
-            <td>{{ item.cate_id.cate_name }}</td>
+        <tbody>
+          {% for item in products %}
+          <tr> 
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.category_id }}</td>
             <td>
-              {% if item.item_img %}
-              <img src="#" style="width: 50px; height: 50px;" alt="">
+              {% if item.image %}
+              <img src="{{ item.image.url }}" style="width: 50px; height: 50px;" alt="">
               {% else %}
-              <img src="" style="width: 50px; height: 50px;" alt="">
+              <img src="{% static 'img/no-img.jpeg' %}" style="width: 50px; height: 50px;" alt="">
               {% endif %}
             </td>
+            <td>{%if item.is_active %}Active{% else %}Inactive{% endif %}</td>
             <td>{{ item.created_at|date:'d-M-Y' }}</td>
             <td>{{ item.updated_at|date:'d-M-Y' }}</td>
 
             <td class="p-2 text-center">
-              <a href="{% url 'item_edit' item.item_id %}" class="btn btn-warning ">Edit</a>
-              <a onclick="delete_item('{{ item.item_id }}')" class="btn btn-danger ">
+              <a href="{% url 'edit_product' item.id %}" class="btn btn-warning ">Edit</a>
+              <a onclick="delete_item('{{ item.id }}')" class="btn btn-danger ">
                 Delete
               </a>
             </td>
           </tr>
           {% endfor %}
-        </tbody> -->
+        </tbody>
       </table>
     </div>
     <!-- /.card-body -->
@@ -75,7 +74,7 @@
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = "item/delete/" + id + "/";
+        window.location.href = "delete/" + id + "/";
       }
     });
   }

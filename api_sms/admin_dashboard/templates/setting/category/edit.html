@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Category{% endblock %}
+
+{% block header %}Edit Category{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6">
+
+	<div class="card card-primary">
+		<div class="card-header">
+			<h3 class="card-title">Edit Category Form</h3>
+
+		</div>
+		<!-- /.card-header -->
+		<!-- form start -->
+		<form action="{% url 'update_category' categories.id %}" method="POST">
+			{% csrf_token %}
+			<div class="card-body">
+				<div class="form-group">
+					<label for="CategoryName">Category Name</label>
+					<input type="text" name="name" value="{{ categories.name }}" class="form-control" id="CategoryName"
+						placeholder="Category Name" required />
+				</div>
+                <div class="form-group">
+                    <label for="CategoryName">Category Status</label>
+                    <select name="is_active" class="form-control" required>
+                        {% if categories.is_active == True %}
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                        {% endif %}
+                        {% if categories.is_active == False %}
+                        <option value="false">Inactive</option>
+                        <option value="true">Active</option>
+                        {% endif %}
+                    </select>
+                    <p>{{ categories.is_active }}</p>
+                </div>
+				<div class="form-group">
+					<label>Category Description</label>
+					<textarea class="form-control" rows="3" name="description" placeholder="Enter description"
+						style="height: 69px;" required>{{ categories.description }}</textarea>
+				</div>
+			</div>
+
+			<div class="card-footer">
+				<button type="submit" class="btn btn-primary">Submit</button>
+				<a href="{% url 'category' %}" class="btn btn-success float-right">Back</a>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
