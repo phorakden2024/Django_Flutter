@@ -4,7 +4,6 @@ from ..models import *
 import datetime
 import sweetify
 
-
 def user(request):
     user = User.objects.all()
     return render(request, 'setting/UserManagerment/user/index.html', {'users': user})
@@ -54,6 +53,5 @@ def delete(request, id):
     sweetify.success(request, 'User deleted successfully')
     return redirect('/user/')
 def view(request, id):
-    viewMode = True
     user = User.objects.get(id=id)
     return render(request, 'setting/UserManagerment/user/edit.html', {'user': user , 'viewMode': viewMode})

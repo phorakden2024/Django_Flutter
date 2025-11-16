@@ -85,12 +85,9 @@ Edit User {% endif %} {% endblock %} {% block content %}
                 type="checkbox"
                 name="is_staff"
                 id="is_staff"
-                {%
-                if
-                user.is_staff
-                %}checked{%
-                endif
-                %}
+                {%if user.is_staff %}
+                  checked
+                {%endif%}
               />
               <label class="form-check-label" for="is_staff"> Is Staff </label>
             </div>
@@ -104,12 +101,7 @@ Edit User {% endif %} {% endblock %} {% block content %}
                 type="checkbox"
                 name="is_superuser"
                 id="is_superuser"
-                {%
-                if
-                user.is_superuser
-                %}checked{%
-                endif
-                %}
+                {% if user.is_superuser%}checked{%endif%}
               />
               <label class="form-check-label" for="is_superuser">
                 Is Superuser
@@ -125,12 +117,7 @@ Edit User {% endif %} {% endblock %} {% block content %}
                 type="checkbox"
                 name="is_active"
                 id="is_active"
-                {%
-                if
-                user.is_active
-                %}checked{%
-                endif
-                %}
+                {%if user.is_active %}checked{% endif %}
               />
               <label class="form-check-label" for="is_active">
                 Is Active

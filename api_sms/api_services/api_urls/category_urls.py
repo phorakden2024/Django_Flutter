@@ -5,10 +5,10 @@ from api_services.api_views import categoryViews
 from swagger import schema_view
 
 urlpatterns = [
-          path('api/v1/categories', categoryViews.category_show),
-          path('api/v1/categories/', categoryViews.create_category),
-          path('api/v1/categories/<int:id>/', categoryViews.update_category),
-          path('api/v1/categories/<int:id>/delete/', categoryViews.delete_category),
-          path('api/v1/categories/<int:id>/show_by_id/', categoryViews.show_category_by_id),
-          path('api/v1/categories/search_by_name/', categoryViews.category_search_by_name),
+          path('categories', categoryViews.category_show),
+          path('categories/', categoryViews.create_category),
+          path('categories/<int:id>/', categoryViews.update_category),
+          path('categories/<int:id>/delete/', categoryViews.delete_category),
+          path('categories/<int:id>/show_by_id/', categoryViews.show_category_by_id),
+          path('categories/search_by_name/', categoryViews.category_search_by_name),
 ]
