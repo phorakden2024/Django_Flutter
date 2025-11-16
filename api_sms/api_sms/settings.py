@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_app',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     'drf_yasg',
     'api_services',
-    'rest_framework.authtoken',
     'admin_dashboard',
     'sweetify',
 ]
@@ -147,7 +148,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication', # Useful for the browsable API and Swagger UI
+        'rest_framework.authentication.SessionAuthentication', 
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny', # Set to 'AllowAny' globally and restrict in views as needed
